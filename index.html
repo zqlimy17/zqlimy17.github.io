@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head>
+    <title>From F9 to A1</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Advent+Pro|Shadows+Into+Light+Two" rel="stylesheet">
+</head>
+<body>
+    <div id="background">
+        <img src="img/main-background.jpg" class="stretch" />
+        <div id="overlay"></div>
+    </div>
+    <div class="container text-center">
+        <!--------------- START SCREEN ------------->
+        <section id="start-menu" class="flex">
+            <h1>From F9 to A1</h1>
+            <div>
+                <h3>Select Operation:</h3>
+                <div class="row flex">
+                    <button id="addition" type="button" class="btn btn-outline-warning flex-fill operation-button">Addition</button>
+                    <button id="subtraction" type="button" class="btn btn-outline-warning flex-fill operation-button">Subtraction</button>
+                    <button id="multiplication" type="button" class="btn btn-outline-warning flex-fill operation-button">Multiplication</button>
+                    <button id="division" type="button" class="btn btn-outline-warning flex-fill operation-button">Division</button>
+                    <button id="random" type="button" class="btn btn-outline-warning flex-fill operation-button">Random</button>
+                </div>
+            </div>
+            <div class="row" tabindex="0" data-toggle="tooltip" title="Select an Operation to start" data-placement="bottom" id="start-tooltip">
+                <button id="start-game" class="btn btn-danger btn-lg btn-block">Start Game</button>
+            </div>
+            <div>
+                <p id="main-menu-high-score" class="high-score-p">High Score: <span class="high-score">-</span> </p>
+            </div>
+            <div class="instructions">
+                <h4>Instructions:</h4>
+                <p class="lead">You have <span id="master-time">30 seconds</span> to get as many correct questions as you can.</p>
+                <p class="lead">Hit Enter to submit.</p>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 flex">
+                    <p class="flex-fill align-self-center">Game Mode:</p>
+                    <button type="button" value="30 seconds" class="btn btn-outline-warning flex-fill active game-mode">Timed</button>
+                    <button type="button" value="all the time you need" class="btn btn-outline-warning flex-fill game-mode">Casual</button>
+                </div>
+                <div class="col-sm-6 flex">
+                    <p class="flex-fill align-self-center">Difficulty:</p>
+                    <button type="button" value="easy" class="btn btn-outline-warning flex-fill active difficulty-options d-inline-block">Easy</button>
+                    <div id="medium-tooltip" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Requires 25 points" data-placement="top">
+                        <button id="medium-button" disabled type="button" value="medium" class="btn btn-outline-warning flex-fill difficulty-options" type="button" type="button" style="pointer-events: none;">Medium</button>
+                    </div>
+                    <div id="hard-tooltip" class="d-inline-block" tabindex="0" data-toggle="tooltip" title="Requires 250 points" data-placement="top">
+                        <button id="hard-button" disabled type="button" value="hard" class="btn btn-outline-warning flex-fill difficulty-options" style="pointer-events: none;">Hard</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--------------- COUNTDOWN TIMER ------------->
+        <section id="countdown">
+            <div id="start-countdown">3</div>
+        </section>
+
+        <!--------------- IN GAME SCREEN ------------->
+        <section id="in-game">
+            <div id="score-board">
+                <div class="board">
+                    <h2>Score</h2>
+                    <div id="current-score">0</div>
+                </div>
+            </div>
+            <div id="mathable"></div>
+            <div id="main-input">
+                <div id="time-bar"></div>
+                <input onfocus="this.value=''" type="number" name="user-input" id="user-input" class="form-control-lg" placeholder="START TYPING">
+            </div>
+            <div>
+                <button class="btn btn-warning btn-lg border-btn" id="pause-button">Pause Game</button>
+                <button class="btn btn-warning btn-lg border-btn" id="in-game-end-game">End Game</button>
+            </div>
+            <div class="row game-instructions-container">
+                <div class="col-sm-6 game-instructions"><span id="space">SPACE</span> TO SKIP</div>
+                <div class="col-sm-6 game-instructions"><span>ENTER</span> TO SUBMIT</div>
+            </div>
+        </section>
+
+        <!--------------- PAUSED SCREEN ------------->
+        <section id="paused-screen">
+            <button class="btn btn-warning btn-lg border-btn" id="resume-button">Resume Game</button>
+            <button class="btn btn-warning back-to-main-menu btn-lg border-btn" id="paused-main-menu">Back to Main Menu</button>
+        </section>
+
+        <!--------------- ENDGAME SCREEN ------------->
+        <section id="end-game">
+            <div id="end-game-p">
+                <p>Hurray!</p>
+                <p>You have scored <span id="end-game-score"></span> points!</p></div>
+                <div>
+                    <p class="high-score-p">High Score: <span class="high-score">-</span> </p>
+                </div>
+                <button class="btn btn-warning btn-lg border-btn" id="restart-game">Try Again!</button>
+                <button class="btn btn-warning back-to-main-menu btn-lg border-btn">Main Menu</button>
+            </section>
+
+
+            <!--------------- FOOTER -------------->
+            <footer class="container-fluid fixed-bottom">
+                <div class="row">
+                    <p class="col-sm-6 text-left">Created by ZQLIMY.</p>
+                    <p class="col-sm-6 text-right">Powered by General Assembly.</p>
+                </div>
+            </footer>
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+            <script type="text/javascript" src="js/app.js"></script>
+        </div>
+    </body>
+    </html>
