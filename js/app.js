@@ -7,7 +7,8 @@ operation = "",
 currentHighScore = "",
 ans = 0,
 isPaused = false,
-scoreCounter = 0;
+scoreCounter = 0,
+highScoreStorage = [];
 
 // SELECTORS
 const startMenu = $('#start-menu'),
@@ -84,10 +85,11 @@ let addition = () => {
         gameSpace.text(a + '+' + b);
         break;
         case "medium":
-        var a = Math.ceil(Math.random() * 45) + 5;
-        var b = Math.ceil(Math.random() * 47) + 3;
-        ans = a + b;
-        gameSpace.text(a + '+' + b);
+        var a = Math.ceil(Math.random() * 75) + 25;
+        var b = Math.ceil(Math.random() * 75) + 25;
+        var c = Math.ceil(Math.random() * 75) + 25;
+        ans = a + b +c;
+        gameSpace.text(a + '+' + b + '+' + c);
         break;
         default:
         var a = Math.ceil(Math.random() * 45) + 5;
@@ -346,6 +348,19 @@ const wrong = () => {
     userInput.val("");
 };
 
+const checkHighScoreUnlockDifficulty = () => {
+    if (currentHighScore >= 25) {
+        $('#medium-tooltip').tooltip('dispose');
+        $('#medium-button').css('pointer-events', '');
+        difficultyOptions.eq(1).attr('disabled', false);
+    };
+    if (currentHighScore >= 250) {
+        $('#hard-tooltip').tooltip('dispose')
+        $('#hard-button').css('pointer-events', '');
+        difficultyOptions.eq(2).attr('disabled', false);
+    }
+}
+
 const gameStart = () => {
     inGameSound.play();
     inGameSound.volume = 0.5;
@@ -420,17 +435,11 @@ const gameEnd = () => {
     if (currentHighScore < scoreCounter) {
         currentHighScore = scoreCounter;
         highScore.text(currentHighScore);
+        highScoreStorage.pop();
+        highScoreStorage.push(currentHighScore);
+        window.localStorage.setItem('highScore', JSON.stringify(highScoreStorage));
     };
-    if (currentHighScore >= 25) {
-        $('#medium-tooltip').tooltip('dispose');
-        $('#medium-button').css('pointer-events', '');
-        difficultyOptions.eq(1).attr('disabled', false);
-    };
-    if (currentHighScore >= 250) {
-        $('#hard-tooltip').tooltip('dispose')
-        $('#hard-button').css('pointer-events', '');
-        difficultyOptions.eq(2).attr('disabled', false);
-    }
+    checkHighScoreUnlockDifficulty();
 };
 
 // BUTTONS
@@ -521,14 +530,24 @@ $('.btn').on('click', () => {
     gameButtonSound.play();
 })
 
+// LOCAL STORAGE
+mainMenuHighScore.hide();
+highScoreStorage.push(JSON.parse(window.localStorage.getItem('highScore')));
+if (highScoreStorage[0] > 0) {
+    currentHighScore = highScoreStorage[0];
+    highScore.text(currentHighScore);
+    mainMenuHighScore.show();
+}
+checkHighScoreUnlockDifficulty();
+
 
 // TOOLTIPS
 $('[data-toggle="tooltip"]').tooltip();
 
 // SHOW/HIDE SECTIONS
 
-mainMenuHighScore.hide();
 countdown.hide();
 inGame.hide();
 endGame.hide();
 pausedScreen.hide();
+
