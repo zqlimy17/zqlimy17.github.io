@@ -9,9 +9,30 @@ body {
 }
 
 h1 {
-    font-family: 'Shadows Into Light Two', cursive;
+    font-family: 'Special Elite', cursive;
     font-weight: 700;
     font-size: 5em;
+    pointer-events: none;
+    line-height: 1.2em;
+}
+
+h1.pulsing {
+    -webkit-animation-name: pulsing;
+    animation-name: pulsing;
+    animation-duration: 1000ms;
+    animation-iteration-count:infinite;
+}
+
+@keyframes pulsing {
+    50% {
+        font-size: 5.2em;
+    }
+}
+
+@-webkit-keyframes pulsing {
+  50% {
+    font-size: 5.2em;
+    }
 }
 
 #background {
