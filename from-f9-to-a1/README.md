@@ -1,6 +1,6 @@
 # GAProject1: [FROM F9 TO A1](https://zqlimy17.github.io/from-f9-to-a1/)
 
-![Screenshot of the game](https://zqlimy.github.com/from-f9-to-a1/img/ss.png)
+![Screenshot of the game](https://zqlimy17.github.io/from-f9-to-a1/img/ss.png)
 
 ## About the Game
 
