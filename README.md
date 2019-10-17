@@ -4,7 +4,7 @@
 
 [From F9 to A1] is a mathematics game for students. The player has to select the operation, and then to answer as many math questions within a 30 seconds limit. 
 
-[Read more about the game here.](https://zqlimy17.github.io/from-f9-to-a1/README.md/)
+[Read more about the game here.](https://github.com/zqlimy17/zqlimy17.github.io/blob/master/from-f9-to-a1/README.md/)
 
 ***
 
