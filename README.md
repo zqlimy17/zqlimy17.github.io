@@ -1,8 +1,7 @@
 # PROJECT 1: [FROM F9 TO A1](https://zqlimy17.github.io/from-f9-to-a1/)
 
-<details><summary>Read more about Project 1</summary>
-# GAProject1: [FROM F9 TO A1](https://zqlimy17.github.io/from-f9-to-a1/)
-
+<details><summary>From F9 to A1 Summary</summary>
+  
 ![Screenshot of the game](https://zqlimy17.github.io/from-f9-to-a1/img/ss.png)
 
 ## About the Game
@@ -56,6 +55,8 @@ Players can play in the "Casual" game mode to try and unlock these harder diffic
 - Pausing the game resets the time bar color.
 - Adding an alert to inform the player that the Medium & Hard difficulties are unlocked.
 </details>
+
+***
 
 # PROJECT 2: [PLACEHOLDER](#)
 
