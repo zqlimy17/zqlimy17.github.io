@@ -63,7 +63,8 @@ const tips = [
 "Tip: Spacebar to skip."
 ]
 
-// FUNCTIONS
+//FUNCTIONS
+
 let game = () => {
     userInput.focus();
     switch (operation) {
@@ -83,10 +84,6 @@ let game = () => {
         random();
     }
 };
-
-// function doOperation(operation, difficulty) {
-
-// }
 
 let addition = () => {
     switch (difficultyMode) {
@@ -256,124 +253,8 @@ userInput.on('keydown', function (event) {
     }
 });
 
-const correct = () => {
-    correctSound.play();
-    switch (difficultyMode) {
-        case "easy":
-        switch (operation) {
-            case "addition":
-            scoreCounter = scoreCounter + 2;
-            break;
-            case "subtraction":
-            scoreCounter = scoreCounter + 3;
-            break;
-            case "multiplication":
-            scoreCounter = scoreCounter + 4;
-            break;
-            case "division":
-            scoreCounter = scoreCounter + 5;
-            break;
-            default:
-            switch (true) {
-                case (operation === "addition"):
-                scoreCounter = scoreCounter + 4;
-                break;
-                case (operation === "subtraction"):
-                scoreCounter = scoreCounter + 6;
-                break;
-                case (operation === "multiplication"):
-                scoreCounter = scoreCounter + 8;
-                break;
-                default:
-                scoreCounter = scoreCounter + 10;
-            }
-        }
-        break;
-        case "medium":
-        switch (operation) {
-            case "addition":
-            scoreCounter = scoreCounter + 20;
-            break;
-            case "subtraction":
-            scoreCounter = scoreCounter + 30;
-            break;
-            case "multiplication":
-            scoreCounter = scoreCounter + 40;
-            break;
-            case "division":
-            scoreCounter = scoreCounter + 50;
-            break;
-            default:
-            switch (true) {
-                case (operation === "addition"):
-                scoreCounter = scoreCounter + 40;
-                break;
-                case (operation === "subtraction"):
-                scoreCounter = scoreCounter + 60;
-                break;
-                case (operation === "multiplication"):
-                scoreCounter = scoreCounter + 80;
-                break;
-                default:
-                scoreCounter = scoreCounter + 100;
-            }
-        }
-        break;
-        default:
-        switch (operation) {
-            case "addition":
-            scoreCounter = scoreCounter + 200;
-            break;
-            case "subtraction":
-            scoreCounter = scoreCounter + 300;
-            break;
-            case "multiplication":
-            scoreCounter = scoreCounter + 400;
-            break;
-            case "division":
-            scoreCounter = scoreCounter + 500;
-            break;
-            default:
-            switch (true) {
-                case (operation === "addition"):
-                scoreCounter = scoreCounter + 400;
-                break;
-                case (operation === "subtraction"):
-                scoreCounter = scoreCounter + 600;
-                break;
-                case (operation === "multiplication"):
-                scoreCounter = scoreCounter + 800;
-                break;
-                default:
-                scoreCounter = scoreCounter + 1000;
-            }
-        }
-    }
-    currentScore.text(scoreCounter);
-    userInput.val("");
-};
-
-const wrong = () => {
-    incorrectSound.play();
-    scoreCounter--;
-    currentScore.text(scoreCounter);
-    userInput.val("");
-};
-
-const checkHighScoreUnlockDifficulty = () => {
-    if (currentHighScore >= 25) {
-        $('#medium-tooltip').tooltip('dispose');
-        $('#medium-button').css('pointer-events', '');
-        difficultyOptions.eq(1).attr('disabled', false);
-    };
-    if (currentHighScore >= 250) {
-        $('#hard-tooltip').tooltip('dispose')
-        $('#hard-button').css('pointer-events', '');
-        difficultyOptions.eq(2).attr('disabled', false);
-    }
-}
-
 const gameStart = () => {
+    timeBar.css('animation-play-state', '');
     inGameSound.play();
     inGameSound.volume = 0.5;
     inGameSound.loop = true;
@@ -381,60 +262,6 @@ const gameStart = () => {
     inGame.show();
     game();
     startTimer();
-};
-
-let startTimer = () => {
-    mainMenuSound.pause();
-    if (activeGameMode === "Timed") {
-        timeBar.show();
-        timeBar.addClass('colorchange');
-        timeLeft = time;
-        let x = setInterval(function() {
-            if (!isPaused) {
-                timeLeft = timeLeft - 0.01;
-                timeBar.width(((timeLeft/time)*100)+'%');
-            }
-            if (timeLeft <= 0.01) {
-                clearInterval(x);
-                gameEnd();
-            }
-        },10);
-        pausedMainMenu.on('click', () => {
-            clearInterval(x);
-            isPaused = false;
-        })
-        inGameEndGame.on('click', () => {
-            clearInterval(x);
-        })
-    } else if (activeGameMode === "Casual") {
-        timeBar.hide();
-    }
-};
-
-const startGameButtonClicked = () => {
-    tipsSpace.text(tips[Math.floor(Math.random()* tips.length)]);
-    timeBar.css('animation-play-state', '');
-    scoreCounter = 0;
-    currentScore.text(scoreCounter);
-    let counter = 3;
-    startMenu.hide();
-    countdown.show();
-    startCountdown.text(counter);
-    let count = setInterval(function(){
-        counter--;
-        startCountdown.text(counter);
-        if(counter === 0) {
-            goSound.play();
-            startCountdown.text('Go!');
-            clearInterval(count);
-        } else {
-            countdownSound.play();
-        }
-        mainMenuSound.volume -= 0.3;
-    },1000);
-    setTimeout(function(){
-        gameStart();
-    }, 4000);
 };
 
 const gameEnd = () => {
@@ -455,111 +282,4 @@ const gameEnd = () => {
     checkHighScoreUnlockDifficulty();
 };
 
-// BUTTONS
-
-startGame.attr('disabled', true);
-
-startGame.on('click', () => {
-    startGameButtonClicked();
-    countdownSound.play();
-
-});
-
-restartGameButton.on('click', () => {
-    countdownSound.play();
-    startGameButtonClicked();
-    endGame.hide();
-    endGameScore.text("");
-});
-
-operationButton.on('click', (event) => {
-    $('#start-tooltip').tooltip('dispose');
-    let x = event.target.id;
-    operationButton.removeClass('active');
-    $(event.currentTarget).addClass('active');
-    operation = x;
-    startGame.attr('disabled', false);
-});
-
-gameMode.on('click', (event) => {
-    gameMode.removeClass('active');
-    $(event.currentTarget).addClass('active');
-    masterTime.text($(event.currentTarget).attr('value'));
-    activeGameMode = $(event.currentTarget).text();
-});
-
-difficultyOptions.on('click', (event) => {
-    difficultyOptions.removeClass('active');
-    $(event.currentTarget).addClass('active');
-    difficultyMode = $(event.currentTarget).attr('value');
-});
-
-inGameEndGame.on('click', () => {
-    gameEnd();
-});
-
-mainMenuButton.on('click',() => {
-    mainMenuSound.volume = 1;
-    mainMenuSound.play();
-    mainMenuSound.loop = true;
-    pausedScreen.hide();
-    countdown.hide();
-    inGame.hide();
-    endGame.hide();
-    startMenu.show();
-    endGameScore.text("");
-});
-
-pauseButton.on('click', () => {
-    inGameSound.pause();
-    timeBar.css('animation-play-state', 'paused');
-    isPaused = true;
-    pausedScreen.show();
-    inGame.hide();
-});
-
-resumeButton.on('click', () => {
-    inGameSound.play();
-    timeBar.css('animation-play-state', '');
-    isPaused = false;
-    pausedScreen.hide();
-    inGame.show();
-});
-
-// AUDIO
-
-let promise = mainMenuSound.play();
-
-if (promise !== undefined) {
-    promise.then(_ => {
-        console.log('Autoplay started!')
-    }).catch(error => {
-        console.log('Autoplay was prevented.')
-        // Show a "Play" button so that user can start playback.
-    });
-}
-
-$('.btn').on('click', () => {
-    gameButtonSound.play();
-})
-
-// LOCAL STORAGE
-mainMenuHighScore.hide();
-highScoreStorage.push(JSON.parse(window.localStorage.getItem('highScore')));
-if (highScoreStorage[0] > 0) {
-    currentHighScore = highScoreStorage[0];
-    highScore.text(currentHighScore);
-    mainMenuHighScore.show();
-}
-checkHighScoreUnlockDifficulty();
-
-// TOOLTIPS
-$('[data-toggle="tooltip"]').tooltip();
-
-// SHOW/HIDE SECTIONS
-
-countdown.hide();
-inGame.hide();
-endGame.hide();
-pausedScreen.hide();
-
+// > check.js

@@ -37,6 +37,9 @@ Players can play in the "Casual" game mode to try and unlock these harder diffic
 - Division: 500 points
 - Random: 2x points
 
+### Wrong
+- Lose 50% of points
+
 # Technologies and Resources
 - HTML, CSS (bootstrap), JavaScript (jQuery, popper.js).
 
