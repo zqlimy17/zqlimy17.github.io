@@ -54,9 +54,10 @@ Players can play in the "Casual" game mode to try and unlock these harder diffic
 # Unsolved Problems and More To Do
 - Pausing the game resets the time bar color.
 - Adding an alert to inform the player that the Medium & Hard difficulties are unlocked.
-</details>
 
 ***
+
+</details>
 
 # PROJECT 2: [PLACEHOLDER](#)
 
