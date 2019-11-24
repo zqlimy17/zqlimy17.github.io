@@ -1,6 +1,6 @@
 # zqlimy's GA Projects
 
-## PROJECT 1: [FROM F9 TO A1](https://zqlimy17.github.io/from-f9-to-a1/)
+## PROJECT 1: [From F9 to A1](https://zqlimy17.github.io/from-f9-to-a1/)
 
 <details><summary>From F9 to A1 Summary</summary>
 
@@ -17,6 +17,7 @@
 
 </details>
 ***
+
 ## PROJECT 3: [PLACEHOLDER](#)
 
 ## PROJECT 4: [PLACEHOLDER](#)
